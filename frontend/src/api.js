@@ -25,14 +25,14 @@ api.interceptors.request.use(
     return config;
   },
   error => {
-    console.error('Request error:', error);
+   // console.error('Request error:', error);
     return Promise.reject(error);
   }
 );
 
 api.interceptors.response.use(
   response => {
-    console.log('API response received:', response.status, response.data);
+   // console.log('API response received:', response.status, response.data);
     return response;
   },
   error => {
@@ -46,14 +46,14 @@ api.interceptors.response.use(
 // Function to validate Codeforces handle
 export const validateCodeforcesHandle = async (handle) => {
   try {
-    console.log('Validating Codeforces handle:', handle);
+   // console.log('Validating Codeforces handle:', handle);
     const response = await cfApi.get(`/user.info?handles=${handle}`);
     return {
       isValid: true,
       user: response.data.result[0]
     };
   } catch (error) {
-    console.error('Codeforces validation error:', error);
+   // console.error('Codeforces validation error:', error);
     if (error.response?.status === 400) {
       // Handle doesn't exist
       return {
