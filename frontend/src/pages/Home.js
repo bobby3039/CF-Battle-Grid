@@ -42,7 +42,7 @@ function Home() {
       setIsCreating(true);
       setError('');
       const response = await api.post('/room/create');
-      console.log('Create room response:', response.data);
+      //console.log('Create room response:', response.data);
       
       if (response.data && typeof response.data.roomId === 'string') {
         navigate(`/room/${response.data.roomId}?handle=${encodeURIComponent(handle)}`);
@@ -51,7 +51,7 @@ function Home() {
         setError('Error: Invalid room ID received from server');
       }
     } catch (error) {
-      console.error('Error creating room:', error);
+      //console.error('Error creating room:', error);
       setError('Failed to create room. Please try again.');
     } finally {
       setIsCreating(false);
