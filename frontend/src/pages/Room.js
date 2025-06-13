@@ -46,7 +46,7 @@ function Room() {
     socket.emit('joinRoom', { roomId: roomId.toString() }, (response) => {
       if (response.success) {
         console.log('Successfully joined room:', response.room);
-        // Only try to reconnect if the game has already started
+        // Only trying to reconnect if the game has already started
         if (response.room.gameStarted) {
           socket.emit('reconnectPlayer', { 
             roomId: roomId.toString(), 
@@ -88,7 +88,7 @@ function Room() {
 
     ///checked
     socket.on('roomUpdate', data => {
-      console.log('Received room update:', data);
+      //console.log('Received room update:', data);
       setIsConnecting(false);
       
       if (data) {
@@ -121,7 +121,7 @@ function Room() {
 
     
     socket.on('gameStarted', data => {
-      console.log('Game started event received:', data);
+      //console.log('Game started event received:', data);
       if (data && data.board) {
       setBoard(data.board);
         setIsStartingGame(false);
@@ -138,7 +138,7 @@ function Room() {
     });
 
     socket.on('gameStartConfirmation', ({ success, room }) => {
-      console.log('Game start confirmation:', success, 'room:', room);
+      //console.log('Game start confirmation:', success, 'room:', room);
       if (success) {
         if (room) {
           setRoom(room);
@@ -154,7 +154,7 @@ function Room() {
     });
 
     socket.on('reconnected', ({ room, team, isInGame, handle: playerHandle }) => {
-      console.log('Reconnected to room:', room, 'team:', team, 'isInGame:', isInGame);
+     // console.log('Reconnected to room:', room, 'team:', team, 'isInGame:', isInGame);
       if (room) {
         setRoom(room);
         if (room.board) {
@@ -169,7 +169,7 @@ function Room() {
     });
 
     socket.on('gameStateUpdate', ({ solvedProblems: newSolved, gameState: newState, winner: newWinner }) => {
-      console.log('Game state update received:', { newSolved, newState, newWinner });
+      //console.log('Game state update received:', { newSolved, newState, newWinner });
       if (newSolved) {
         setSolvedProblems(newSolved);
       }
