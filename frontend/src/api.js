@@ -1,8 +1,12 @@
 import axios from 'axios';
 
+// Main API client for your backend
+const BACKEND_URL = 'https://cf-battle-grid-production.up.railway.app';
+
 const api = axios.create({
-  baseURL: 'REACT_APP_BACKEND_URL',
+  baseURL: `${BACKEND_URL}/api`,
   timeout: 15000,
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json'
   }
@@ -14,10 +18,27 @@ const cfApi = axios.create({
   timeout: 5000
 });
 
+// API interceptors for better error handling
+api.interceptors.request.use(
+  config => {
+    console.log('Making API request to:', config.baseURL + config.url);
+    return config;
+  },
+  error => {
+    console.error('Request error:', error);
+    return Promise.reject(error);
+  }
+);
+
 api.interceptors.response.use(
-  response => response,
+  response => {
+    console.log('API response received:', response.status, response.data);
+    return response;
+  },
   error => {
     console.error('API Error:', error.response?.data || error.message);
+    console.error('Error status:', error.response?.status);
+    console.error('Error config:', error.config);
     return Promise.reject(error);
   }
 );
@@ -25,12 +46,14 @@ api.interceptors.response.use(
 // Function to validate Codeforces handle
 export const validateCodeforcesHandle = async (handle) => {
   try {
+    console.log('Validating Codeforces handle:', handle);
     const response = await cfApi.get(`/user.info?handles=${handle}`);
     return {
       isValid: true,
       user: response.data.result[0]
     };
   } catch (error) {
+    console.error('Codeforces validation error:', error);
     if (error.response?.status === 400) {
       // Handle doesn't exist
       return {
