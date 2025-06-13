@@ -1,0 +1,267 @@
+.room-container {
+  max-width: 1400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #111827;
+  min-height: calc(100vh - 40px);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.room-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #1f2937;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.room-header-info {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.room-header-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.room-header-label {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.room-header-value {
+  padding: 6px 12px;
+  background-color: #374151;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #60a5fa;
+}
+
+.room-header-handle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #e5e7eb;
+  padding: 6px 12px;
+  background-color: #374151;
+  border-radius: 6px;
+}
+
+.leave-room-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #991b1b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.error-message {
+  color: #fca5a5;
+  padding: 12px 16px;
+  margin: 0 0 24px 0;
+  background-color: #7f1d1d;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.error-icon {
+  font-size: 20px;
+}
+
+.player-list-container {
+  background-color: #1f2937;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.team-selector-container {
+  text-align: center;
+  margin-bottom: 24px;
+  background-color: #1f2937;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.game-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 24px;
+  align-items: stretch;
+  min-height: calc(100vh - 300px);
+}
+
+.game-board-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #1f2937;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.start-game-btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.start-game-btn:disabled {
+  background-color: #4b5563;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.game-board {
+  flex: 1;
+}
+
+.chat-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #1f2937;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #1f2937;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+  color: #e5e7eb;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.modal-message {
+  color: #9ca3af;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.modal-cancel-btn {
+  padding: 8px 16px;
+  background-color: #374151;
+  color: #e5e7eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.modal-confirm-btn {
+  padding: 8px 16px;
+  background-color: #991b1b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.connecting-message {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.game-blocked-message {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #1f2937;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.game-blocked-icon {
+  font-size: 24px;
+  color: #fbbf24;
+  margin-bottom: 16px;
+}
+
+.game-blocked-title {
+  color: #e5e7eb;
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.game-blocked-text {
+  color: #9ca3af;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.return-home-btn {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background-color: #374151;
+  color: #e5e7eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+} 

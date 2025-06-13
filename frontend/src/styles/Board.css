@@ -1,0 +1,118 @@
+.board-container {
+  margin-top: 20px;
+}
+
+.winner-message {
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #065f46;
+  border-radius: 8px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #e5e7eb;
+}
+
+.board-error {
+  color: #fca5a5;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #7f1d1d;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.check-solutions-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.check-solutions-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.check-solutions-btn:disabled {
+  background-color: #4b5563;
+  cursor: not-allowed;
+}
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.board-cell {
+  border: 1px solid #374151;
+  padding: 15px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #1f2937;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.board-cell.solved-team-a {
+  background-color: #065f46;
+}
+
+.board-cell.solved-team-b {
+  background-color: #854d0e;
+}
+
+.question-link {
+  text-decoration: none;
+  color: #60a5fa;
+  display: block;
+  transition: all 0.2s ease;
+}
+
+.question-name {
+  margin: 0 0 10px 0;
+  color: #e5e7eb;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.question-name:hover {
+  color: #60a5fa;
+  background-color: rgba(96, 165, 250, 0.1);
+}
+
+.solved-info {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.solved-state {
+  font-size: 100px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.solved-state.team-a {
+  color: #34d399;
+}
+
+.solved-state.team-b {
+  color: #fbbf24;
+}
+
+.solved-by {
+  font-size: 12px;
+  color: #9ca3af;
+} 
