@@ -107,24 +107,24 @@ async function getPlayerTeam(roomId, handle) {
   }
 }
 
-const cleanupExpiredRooms = async () => {
-  try {
-    const result = await Room.deleteMany({
-      createdAt: { $lt: new Date(Date.now() - 9000 * 1000) }
-    });
-    if (result.deletedCount > 0) {
-      console.log(`Deleted ${result.deletedCount} expired rooms`);
-    }
-  } catch (error) {
-    console.error('Room cleanup failed:', error);
-  }
-};
+// const cleanupExpiredRooms = async () => {
+//   try {
+//     const result = await Room.deleteMany({
+//       createdAt: { $lt: new Date(Date.now() - 9000 * 1000) }
+//     });
+//     if (result.deletedCount > 0) {
+//       console.log(`Deleted ${result.deletedCount} expired rooms`);
+//     }
+//   } catch (error) {
+//     console.error('Room cleanup failed:', error);
+//   }
+// };
 
-// Run cleanup every hour
-setInterval(cleanupExpiredRooms, 60 * 60 * 1000);
+// // Run cleanup every hour
+// setInterval(cleanupExpiredRooms, 60 * 60 * 1000);
 
-// Run cleanup once when the server starts
-cleanupExpiredRooms();
+// // Run cleanup once when the server starts
+// cleanupExpiredRooms();
 
 module.exports = { 
   createRoom, 
@@ -133,5 +133,5 @@ module.exports = {
   getRoom,
   isPlayerInRoom,
   getPlayerTeam,
-  cleanupExpiredRooms
+  //cleanupExpiredRooms
 };
