@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Main API client for your backend
-const BACKEND_URL = 'https://cf-battle-grid-production.up.railway.app';
+const BACKEND_URL = 'REACT_APP_BACKEND_URL';
 
 const api = axios.create({
   baseURL: `${BACKEND_URL}/api`,
