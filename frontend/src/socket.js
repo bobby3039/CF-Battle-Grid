@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
-const BACKEND_URL =  'REACT_APP_BACKEND_URL';
+const BACKEND_URL =  'https://cf-battle-grid-production.up.railway.app';
 
 console.log('Backend URL:', BACKEND_URL);
 console.log('Environment variable:', process.env.REACT_APP_BACKEND_URL);
