@@ -21,7 +21,7 @@ const cfApi = axios.create({
 // API interceptors for better error handling
 api.interceptors.request.use(
   config => {
-    console.log('Making API request to:', config.baseURL + config.url);
+    //console.log('Making API request to:', config.baseURL + config.url);
     return config;
   },
   error => {
