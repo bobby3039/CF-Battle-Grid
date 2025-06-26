@@ -44,8 +44,7 @@ function Room() {
 
     socket.emit('joinRoom', { roomId: roomId.toString() }, (response) => {
       if (response.success) {
-        //console.log('Successfully joined room:', response.room);
-        // Only try to reconnect if the game has already started
+     
         if (response.room.gameStarted) {
           socket.emit('reconnectPlayer', { 
             roomId: roomId.toString(), 
