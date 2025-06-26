@@ -42,11 +42,9 @@ function Room() {
       return;
     }
 
-    //console.log('Connecting to room:', roomId, 'with handle:', handle);
     socket.emit('joinRoom', { roomId: roomId.toString() }, (response) => {
       if (response.success) {
         console.log('Successfully joined room:', response.room);
-        // Only trying to reconnect if the game has already started
         if (response.room.gameStarted) {
           socket.emit('reconnectPlayer', { 
             roomId: roomId.toString(), 
@@ -71,7 +69,6 @@ function Room() {
                 }
               }
             } else {
-             // console.log('Not previously in game, ready to join team');
             }
           });
         } else {
@@ -81,14 +78,12 @@ function Room() {
           setError('');
         }
       } else {
-       // console.error('Failed to join room:', response.error);
         setError(response.error || 'Failed to join room');
       }
     });
 
-    ///checked
+    //checked
     socket.on('roomUpdate', data => {
-      //console.log('Received room update:', data);
       setIsConnecting(false);
       
       if (data) {
@@ -121,7 +116,7 @@ function Room() {
 
     
     socket.on('gameStarted', data => {
-      //console.log('Game started event received:', data);
+   
       if (data && data.board) {
       setBoard(data.board);
         setIsStartingGame(false);
@@ -138,7 +133,7 @@ function Room() {
     });
 
     socket.on('gameStartConfirmation', ({ success, room }) => {
-      //console.log('Game start confirmation:', success, 'room:', room);
+    
       if (success) {
         if (room) {
           setRoom(room);
@@ -154,7 +149,6 @@ function Room() {
     });
 
     socket.on('reconnected', ({ room, team, isInGame, handle: playerHandle }) => {
-     // console.log('Reconnected to room:', room, 'team:', team, 'isInGame:', isInGame);
       if (room) {
         setRoom(room);
         if (room.board) {
@@ -181,13 +175,11 @@ function Room() {
       }
     });
 
-    socket.on('gameOver', ({ winner: gameWinner }) => {
-     // console.log('Game over:', gameWinner);
+    socket.on('gameOver', ({ winner: gameWinner }) => {  
       setWinner(gameWinner);
     });
 
     socket.on('error', ({ message }) => {
-    //  console.error('Socket error:', message);
       setError(message);
       setIsConnecting(false);
       setIsStartingGame(false);
@@ -195,13 +187,11 @@ function Room() {
     });
 
     socket.on('connect_error', (error) => {
-     // console.error('Socket connection error:', error);
       setError('Failed to connect to server. Please try again.');
       setIsConnecting(false);
     });
 
     socket.on('disconnect', (reason) => {
-    //  console.log('Socket disconnected:', reason);
       if (reason === 'io server disconnect') {
         setError('Server disconnected. Please refresh the page.');
       } else {
@@ -262,10 +252,8 @@ function Room() {
       setError('');
       
       const response = await api.post(`/room/start/${roomId}`, settings);
-     // console.log('Response from backend:', response.data);
       
       if (response.data && response.data.board) {
-        // Notify other players with complete game state and wait for acknowledgment
         socket.emit('gameStarted', { 
           roomId: roomId.toString(), 
           board: response.data.board,
@@ -274,8 +262,7 @@ function Room() {
           teamB: response.data.teamB
         }, (socketResponse) => {
           if (socketResponse.success) {
-          //  console.log('Game started successfully:', socketResponse);
-            // Update local state
+
             setBoard(response.data.board);
             setRoom(prev => ({
               ...prev,
@@ -286,7 +273,6 @@ function Room() {
             setShowSettings(false);
             setIsStartingGame(false);
           } else {
-          //  console.error('Refresh the page to start the game:', socketResponse.error);
             setError(socketResponse.error || 'Refresh the page to start the game');
             setIsStartingGame(false);
           }
@@ -295,7 +281,6 @@ function Room() {
         throw new Error('Invalid response from server');
       }
     } catch (error) {
-     // console.error('Error details:', error.response?.data);
       setError(error.response?.data?.error || 'Refresh the page to start the game');
       setIsStartingGame(false);
     }

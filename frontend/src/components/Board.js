@@ -50,7 +50,7 @@ function Board({ board, roomId, handle, solvedProblems = {}, gameState = {}, win
             className="question-link"
           >
             <h4 className="question-name">
-              {problem.name}
+            {problem.name}
             </h4>
           </a>
         </div>
@@ -95,7 +95,7 @@ function Board({ board, roomId, handle, solvedProblems = {}, gameState = {}, win
 
       <div className="board-grid">
         {board.map((row, i) => 
-          row.map((problem, j) => renderCell(problem, i, j))
+           row.map((problem, j) => renderCell(problem, i, j))
         )}
       </div>
     </div>
