@@ -3,8 +3,8 @@ import EmojiPicker from 'emoji-picker-react';
 import socket from '../socket';
 import '../styles/Chat.css';
 
-const MAX_MESSAGES = 100; // Maximum number of messages to store per channel
-const MAX_MESSAGE_AGE = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+const MAX_MESSAGES = 100; 
+const MAX_MESSAGE_AGE = 24 * 60 * 60 * 1000; 
 
 function Chat({ roomId, handle, team }) {
   const [messages, setMessages] = useState([]);
@@ -32,19 +32,19 @@ function Chat({ roomId, handle, team }) {
       }
     } catch (error) {
       console.error('Error loading messages:', error);
-      setMessages([]); // Reset to empty if there's an error
+      setMessages([]); 
     }
   }, [roomId, activeChannel]);
 
-  // Save messages to localStorage with cleanup
+
   useEffect(() => {
     try {
-      // Keep only the most recent messages
+
       const recentMessages = messages.slice(-MAX_MESSAGES);
       localStorage.setItem(`chat_${roomId}_${activeChannel}`, JSON.stringify(recentMessages));
     } catch (error) {
       console.error('Error saving messages:', error);
-      // If storage is full, remove old messages
+   
       try {
         const oldMessages = messages.slice(-Math.floor(MAX_MESSAGES / 2));
         localStorage.setItem(`chat_${roomId}_${activeChannel}`, JSON.stringify(oldMessages));
@@ -54,15 +54,14 @@ function Chat({ roomId, handle, team }) {
     }
   }, [messages, roomId, activeChannel]);
 
-  // Scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Socket event listeners
+ 
   useEffect(() => {
     socket.on('chatMessage', (message) => {
-      // Check if this is a message we sent (avoid duplicates)
+     
       if (!sentMessagesRef.current.has(message.id) &&
           (message.channel === activeChannel || 
            (message.channel === 'teamA' && team === 'teamA') ||
@@ -90,27 +89,22 @@ function Chat({ roomId, handle, team }) {
       file: selectedFile
     };
 
-    // Add to sent messages set
+    
     sentMessagesRef.current.add(messageId);
 
-    // Add message locally with cleanup if needed
     setMessages(prev => {
       const updatedMessages = [...prev, message];
-      return updatedMessages.slice(-MAX_MESSAGES); // Keep only the most recent messages
+      return updatedMessages.slice(-MAX_MESSAGES); 
     });
     
-    // Emit to others
     socket.emit('chatMessage', message);
 
-    // Clean up
     setNewMessage('');
     setSelectedFile(null);
     setShowEmojiPicker(false);
-
-    // Remove from sent messages set after a while
     setTimeout(() => {
       sentMessagesRef.current.delete(messageId);
-    }, 5000); // Clear after 5 seconds
+    }, 5000); 
   };
 
   const handleFileSelect = (event) => {
@@ -132,14 +126,10 @@ function Chat({ roomId, handle, team }) {
     setNewMessage(prev => prev + emojiData.emoji);
   };
 
-  // const canViewChannel = (channel) => {
-  //   if (channel === 'general') return true;
-  //   return channel === team;
-  // };
 
   return (
     <div className="chat-container">
-      {/* Channel Tabs */}
+      {}
       <div className="chat-tabs">
         <button
           onClick={() => setActiveChannel('general')}
