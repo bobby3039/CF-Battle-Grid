@@ -9,3 +9,5 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+console.log("App started ✅");
