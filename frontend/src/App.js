@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import Home from './pages/Home';
 import Room from './pages/Room';
 import About from './pages/About';
+import Leaderboard from './pages/Leaderboard';
 
 // Create a separate Navigation component
 const Navigation = () => {
@@ -60,6 +61,7 @@ const Navigation = () => {
         </Link>
         <div style={navLinksStyle}>
           <Link to="/" style={linkStyle}>Home</Link>
+          <Link to="/leaderboard" style={linkStyle}>Leaderboard</Link>
           <Link to="/about" style={linkStyle}>About</Link>
         </div>
       </div>
@@ -72,11 +74,12 @@ function App() {
     <Router>
       <div>
         <Navigation />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/room/:roomId" element={<Room />} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/room/:roomId" element={<Room />} />
           <Route path="/about" element={<About />} />
-      </Routes>
+          <Route path="/leaderboard" element={<Leaderboard />} />
+        </Routes>
       </div>
     </Router>
   );

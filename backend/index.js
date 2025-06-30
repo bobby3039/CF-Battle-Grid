@@ -5,6 +5,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const connectDB = require('./config/db');
 const roomRoutes = require('./routes/roomRoutes');
+const leaderboardRoutes = require('./routes/leaderboardRoutes');
 const setupSocket = require('./socket');
 
 const app = express();
@@ -37,6 +38,7 @@ const io = new Server(server, {
 setupSocket(io);
 
 app.use('/api/room', roomRoutes);
+app.use('/api/leaderboard', leaderboardRoutes);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
